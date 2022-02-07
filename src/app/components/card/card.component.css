@@ -1,0 +1,17 @@
+mat-card{
+    background: url(../../../assets/img/background-card.png);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    background-color: rgba(209, 235, 247, 0.693);
+    flex: 33.3%;
+    margin: 40px;
+}
+
+mat-card-header{
+  display: block;
+}
+
+img{
+  width:200px;
+}

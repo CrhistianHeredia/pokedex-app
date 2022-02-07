@@ -1,0 +1,11 @@
+<app-header (search)="searchPokemon($event)" [pageHome]="true"></app-header>
+<div class="div-container" >
+  <app-card *ngFor="let item of pokemonList" [item]="item"></app-card>
+</div>
+<mat-paginator
+  [length]="countPokemons"
+  [pageSize]="pokemonLimit"
+  [showFirstLastButtons]=true
+  (page)="pageEvent = getPokemonList($event)"
+>
+</mat-paginator>

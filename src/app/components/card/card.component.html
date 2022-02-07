@@ -1,0 +1,15 @@
+<mat-card *ngIf="!pokemon"><mat-spinner ></mat-spinner></mat-card>
+<mat-card *ngIf="pokemon" (click)="showDetail(pokemon.id)">
+  <mat-card-header>
+    <mat-card-title >{{this.pokemon.name | uppercase }}</mat-card-title>
+  </mat-card-header>
+  <img src="{{this.pokemon.sprites.front_default}}" alt="{{this.pokemon.name}}">
+  <mat-card-content>
+    <h2>#{{pokemon.id  | number:'3.0-5'}}</h2>
+    <mat-chip-list>
+      <mat-chip *ngFor="let type of pokemon.types" color="accent" selected>
+        {{type.type.name | titlecase }}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+</mat-card>
