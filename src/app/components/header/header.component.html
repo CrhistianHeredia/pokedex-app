@@ -25,10 +25,13 @@
   </mat-toolbar>
 } @else {
   <mat-toolbar>
-    <button mat-icon-button aria-label="Back" (click)="backClicked()">
+    <button mat-icon-button aria-label="Back" routerLink="/home">
       <mat-icon>chevron_left</mat-icon>
     </button>
     <span class="nav-brand">Pokédex</span>
     <span class="spacer"></span>
+    <button mat-icon-button aria-label="Trainer" routerLink="/trainer">
+      <mat-icon>account_circle</mat-icon>
+    </button>
   </mat-toolbar>
 }

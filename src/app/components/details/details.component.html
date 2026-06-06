@@ -33,7 +33,12 @@
         <div class="info-header">
           <div>
             <span class="pokemon-number">#{{ pokemon.id | number:'3.0-5' }}</span>
-            <h1>{{ pokemon.name | titlecase }}</h1>
+            <div class="name-row">
+              <h1>{{ pokemon.name | titlecase }}</h1>
+              <button class="cry-btn" (click)="playCry()" [class.playing]="playing" title="Play cry">
+                <mat-icon>{{ playing ? 'stop' : 'volume_up' }}</mat-icon>
+              </button>
+            </div>
           </div>
           <div class="detail-types">
             @for (type of pokemon.types; track type.slot) {

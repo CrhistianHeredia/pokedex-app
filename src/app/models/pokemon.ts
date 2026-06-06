@@ -20,6 +20,11 @@ export interface PokemonAbility {
   slot: number;
 }
 
+export interface PokemonCries {
+  latest: string;
+  legacy: string;
+}
+
 export interface PokemonSprites {
   front_default: string;
   front_shiny?: string;
@@ -35,6 +40,7 @@ export interface Pokemon {
   stats: PokemonStat[];
   abilities: PokemonAbility[];
   sprites: PokemonSprites;
+  cries: PokemonCries;
   height: number;
   weight: number;
 }

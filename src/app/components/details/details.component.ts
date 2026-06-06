@@ -45,6 +45,27 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  playing = false;
+  audio: HTMLAudioElement | null = null;
+
+  playCry(): void {
+    if (!this.pokemon?.cries?.latest) return;
+    if (this.playing) {
+      this.audio?.pause();
+      this.audio = null;
+      this.playing = false;
+      return;
+    }
+    this.audio = new Audio(this.pokemon.cries.latest);
+    this.audio.volume = 0.3;
+    this.playing = true;
+    this.audio.play().catch(() => {});
+    this.audio.onended = () => {
+      this.playing = false;
+      this.audio = null;
+    };
+  }
+
   hideIcon(event: Event): void {
     (event.target as HTMLImageElement).style.display = 'none';
   }
