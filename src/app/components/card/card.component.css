@@ -28,7 +28,7 @@
   transform: translate(-50%, -50%);
   font-size: 80px;
   font-weight: 900;
-  color: rgba(0, 0, 0, 0.04);
+  color: var(--pokemon-number-bg);
   letter-spacing: 2px;
   pointer-events: none;
   z-index: 0;
@@ -64,7 +64,11 @@ mat-card-content {
 mat-card-title {
   font-size: 15px;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-primary);
+}
+
+.pokemon-card {
+  background: var(--bg-card);
 }
 
 /* --- Type bar at bottom --- */

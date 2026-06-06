@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #f0f2f5;
+  background: var(--bg-primary);
   position: relative;
 }
 
@@ -41,7 +41,7 @@
 .nav-arrow:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
-  color: #333;
+  color: var(--text-primary);
 }
 
 .nav-arrow.disabled {
@@ -69,7 +69,7 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  background: white;
+  background: var(--bg-detail);
 }
 
 /* --- Left: Artwork --- */
@@ -151,7 +151,7 @@
   margin: 4px 0 0;
   font-size: 32px;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--text-primary);
 }
 
 .cry-btn {
@@ -210,7 +210,7 @@
 .info-section h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #555;
+  color: var(--text-secondary);
   margin: 0 0 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -234,7 +234,7 @@
   min-width: 80px;
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: var(--text-secondary);
   text-transform: uppercase;
 }
 
@@ -251,7 +251,7 @@
   min-width: 28px;
   font-size: 14px;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
   text-align: right;
 }
 
@@ -268,7 +268,7 @@
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: #f5f5f5;
+  background: var(--bg-card);
   border-radius: 20px;
   font-size: 13px;
   font-weight: 500;
@@ -285,8 +285,8 @@
 .hidden-badge {
   font-size: 10px;
   font-weight: 700;
-  color: #999;
-  background: #eee;
+  color: var(--text-muted);
+  background: var(--bg-card);
   padding: 2px 6px;
   border-radius: 6px;
   text-transform: uppercase;
@@ -312,7 +312,7 @@
   font-size: 20px;
   width: 20px;
   height: 20px;
-  color: #888;
+  color: var(--text-muted);
 }
 
 /* --- Evolution --- */
@@ -331,7 +331,7 @@
   gap: 8px;
   padding: 16px;
   border-radius: 16px;
-  background: #fafafa;
+  background: var(--bg-card);
   min-width: 130px;
   overflow: hidden;
 }
@@ -347,7 +347,7 @@
 .evo-name {
   font-size: 13px;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-primary);
   position: relative;
   z-index: 1;
 }

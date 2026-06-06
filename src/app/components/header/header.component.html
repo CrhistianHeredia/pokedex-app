@@ -19,6 +19,10 @@
       </div>
     </div>
 
+    <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="darkMode ? 'Light mode' : 'Dark mode'">
+      <mat-icon>{{ darkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+
     <a class="nav-right" routerLink="/trainer">
       @if (!userImgError) {
         <img
@@ -42,6 +46,9 @@
     </a>
     <span class="nav-brand">Pokédex</span>
     <span class="spacer"></span>
+    <button class="theme-btn" (click)="toggleTheme()" [attr.aria-label]="darkMode ? 'Light mode' : 'Dark mode'">
+      <mat-icon>{{ darkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
     <a class="nav-right" routerLink="/trainer">
       @if (!userImgError) {
         <img

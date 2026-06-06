@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { fadeSlideIn } from 'src/app/app-animations';
 
 @Component({
   selector: 'app-trainer',
   templateUrl: './trainer.component.html',
-  styleUrls: ['./trainer.component.css']
+  styleUrls: ['./trainer.component.css'],
+  animations: [fadeSlideIn]
 })
-export class TrainerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class TrainerComponent {}

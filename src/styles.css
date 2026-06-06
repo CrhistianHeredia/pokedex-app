@@ -1,10 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --bg-primary: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-detail: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --text-muted: #888;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --skeleton-base: #f0f0f0;
+  --skeleton-shine: #e0e0e0;
+  --pokemon-number-bg: rgba(0, 0, 0, 0.04);
+  --paginator-bg: #ffffff;
+}
+
+body.dark-mode {
+  --bg-primary: #121212;
+  --bg-card: #1e1e1e;
+  --bg-detail: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  --text-muted: #777;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --skeleton-base: #2a2a2a;
+  --skeleton-shine: #3a3a3a;
+  --pokemon-number-bg: rgba(255, 255, 255, 0.04);
+  --paginator-bg: #1a1a1a;
+}
+
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: #f0f2f5;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
 }
 
 .mat-form-field-wrapper {
