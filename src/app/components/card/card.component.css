@@ -169,15 +169,16 @@ mat-card-title {
   filter: drop-shadow(0 0 15px rgba(180, 100, 255, 0.5))
           saturate(1.3)
           brightness(1.1);
-  position: relative;
-  z-index: 1;
 }
 
-.pokemon-card.hologram .pokemon-number-bg,
 .pokemon-card.hologram mat-card-title,
 .pokemon-card.hologram mat-card-content {
   position: relative;
   z-index: 1;
+}
+
+.pokemon-card.hologram .pokemon-number-bg {
+  z-index: 0;
 }
 
 @keyframes hologramShift {
