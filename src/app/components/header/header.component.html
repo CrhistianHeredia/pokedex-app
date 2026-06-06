@@ -1,46 +1,25 @@
 @if (pageHome) {
   <mat-toolbar>
-    <div class="nav-left">
-      <button mat-icon-button aria-label="Home" routerLink="/home">
-        <img src="../../../assets/img/poke-radar.png" alt="Pokédex" class="nav-logo">
-      </button>
+    <a class="nav-left" routerLink="/home">
+      <img src="../../../assets/img/poke-radar.png" alt="Pokédex" class="nav-logo">
       <span class="nav-brand">Pokédex</span>
-    </div>
+    </a>
 
     <div class="nav-center">
-      <mat-form-field appearance="fill" class="search-field" subscriptSizing="dynamic">
-        <mat-label>Search Pokémon</mat-label>
-        <input matInput placeholder="#id or name" [(ngModel)]="searchInput" (keyup.enter)="searchPokemon()"/>
-        <button matSuffix mat-icon-button (click)="searchPokemon()">
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Search Pokémon"
+          [(ngModel)]="searchInput"
+          (keyup.enter)="searchPokemon()"
+        />
+        <button class="search-btn" (click)="searchPokemon()">
           <mat-icon>search</mat-icon>
         </button>
-      </mat-form-field>
+      </div>
     </div>
 
-    <div class="nav-right">
-      <button mat-icon-button aria-label="Trainer" routerLink="/trainer" class="user-btn">
-        @if (!userImgError) {
-          <img
-            src="../../../assets/img/perfil.jpg"
-            alt="Trainer"
-            class="user-avatar"
-            (error)="onUserImgError()"
-          />
-        }
-        @if (userImgError) {
-          <mat-icon>account_circle</mat-icon>
-        }
-      </button>
-    </div>
-  </mat-toolbar>
-} @else {
-  <mat-toolbar>
-    <button mat-icon-button aria-label="Back" routerLink="/home">
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-    <span class="nav-brand">Pokédex</span>
-    <span class="spacer"></span>
-    <button mat-icon-button aria-label="Trainer" routerLink="/trainer" class="user-btn">
+    <a class="nav-right" routerLink="/trainer">
       @if (!userImgError) {
         <img
           src="../../../assets/img/perfil.jpg"
@@ -50,8 +29,31 @@
         />
       }
       @if (userImgError) {
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon class="user-icon">account_circle</mat-icon>
       }
-    </button>
+    </a>
+  </mat-toolbar>
+} @else {
+  <mat-toolbar>
+    <a class="nav-left" routerLink="/home">
+      <button mat-icon-button aria-label="Back">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </a>
+    <span class="nav-brand">Pokédex</span>
+    <span class="spacer"></span>
+    <a class="nav-right" routerLink="/trainer">
+      @if (!userImgError) {
+        <img
+          src="../../../assets/img/perfil.jpg"
+          alt="Trainer"
+          class="user-avatar"
+          (error)="onUserImgError()"
+        />
+      }
+      @if (userImgError) {
+        <mat-icon class="user-icon">account_circle</mat-icon>
+      }
+    </a>
   </mat-toolbar>
 }
