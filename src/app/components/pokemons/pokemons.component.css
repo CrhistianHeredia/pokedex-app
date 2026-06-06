@@ -57,6 +57,32 @@
   z-index: 10;
 }
 
+::ng-deep .paginator-wrapper .mat-mdc-paginator {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+::ng-deep .paginator-wrapper .mat-mdc-paginator .mat-mdc-paginator-icon {
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .paginator-wrapper .mat-mdc-paginator .mat-mdc-paginator-range-label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+::ng-deep .paginator-wrapper .mat-mdc-paginator .mat-mdc-select-value-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+::ng-deep .paginator-wrapper .mat-mdc-paginator .mat-mdc-select-arrow {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+::ng-deep .paginator-wrapper .mat-mdc-paginator-navigation-previous,
+::ng-deep .paginator-wrapper .mat-mdc-paginator-navigation-next {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 @media (max-width: 600px) {
   .skeleton-grid {
     grid-template-columns: repeat(2, 1fr);
