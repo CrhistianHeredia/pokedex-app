@@ -25,6 +25,38 @@ PokedexApp is an Angular-based project that serves as a Pokédex application. It
 - `package.json` – Node.js package configuration (referenced but not scanned)  
 - Top-level build output: `dist/` (not scanned)  
 
+## Deploy a GitHub Pages
+
+1. **Build para producción** con el `base-href` del repositorio:
+   ```bash
+   npx ng build --configuration=production --base-href="/pokedex-app/"
+   ```
+
+2. **Assets locales** (imágenes en `src/assets/`): usar rutas absolutas con prefijo `./` en los templates:
+   ```html
+   <img src="./assets/img/perfil.jpg" ...>
+   ```
+   No usar rutas relativas como `../../../assets/` porque fallan en producción con `base-href`.
+
+3. **Budgets de CSS**: si el build falla por tamaño de CSS, aumentar los límites en `angular.json`:
+   ```json
+   {
+     "type": "anyComponentStyle",
+     "maximumWarning": "8kb",
+     "maximumError": "12kb"
+   }
+   ```
+
+4. **Publicar en gh-pages** (usa `angular-cli-ghpages`):
+   ```bash
+   npx angular-cli-ghpages --dir=dist/pokedex-app
+   ```
+
+5. **URL del sitio**: `https://<user>.github.io/<repo>/`
+   - Ejemplo: `https://crhistianheredia.github.io/pokedex-app/`
+
+> Nota: `angular-cli-ghpages` se instala automáticamente via `npx` si no está presente.
+
 ## Conventions
 - Angular CLI standard project structure  
 - TypeScript strict mode: TBD (tsconfig.json present but not inspected for strict flags)  
