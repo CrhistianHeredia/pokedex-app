@@ -1,60 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { BehaviorSubject, debounceTime, mergeMap, of, tap } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { PokemonListItem } from 'src/app/models/pokemon';
+import { listStagger, fadeSlideIn } from 'src/app/app-animations';
 
 @Component({
   selector: 'app-pokemons',
   templateUrl: './pokemons.component.html',
-  styleUrls: ['./pokemons.component.css']
+  styleUrls: ['./pokemons.component.css'],
+  animations: [listStagger, fadeSlideIn]
 })
 export class PokemonsComponent implements OnInit {
+  readonly currentPage = signal(0);
+  readonly pageSize = signal(20);
 
-  pokemonList : any;
-  pokemonLimit = 20;
-  countPokemons :number = 0;
-  numberPage  = new BehaviorSubject(0);
-  pageEvent:  any = PageEvent
+  readonly pokemonList = this.api.pokemonList.asReadonly();
+  readonly countPokemons = this.api.totalCount.asReadonly();
+  readonly loading = this.api.loading.asReadonly();
 
   constructor(
     private api: ApiService,
     private router: Router,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.loadView();
+    this.loadPokemonList();
   }
 
-  loadView(){
-    this.api.getPokemons().subscribe(
-      (data: any) => {
-        this.countPokemons = parseInt(data['count']);
-        this.pokemonList = data['results'];
-      }
-    );
+  loadPokemonList(): void {
+    this.api.getPokemonList(this.pageSize(), this.currentPage() * this.pageSize()).subscribe();
   }
 
-  getPokemonList(event: PageEvent){
-    of(event).pipe(
-      debounceTime(2000),
-      mergeMap( data => {
-        this.numberPage.next(data.pageIndex * data.pageSize);
-        return this.api.getPokemonList( data.pageSize, this.numberPage.value)
-      })
-    ).subscribe(
-      (reponseData: any) => {
-        this.countPokemons = parseInt(reponseData['count']);
-        this.pokemonList = reponseData['results'];
-      }
-    );
+  getPokemonList(event: PageEvent): void {
+    this.currentPage.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+    this.loadPokemonList();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  searchPokemon(event:any){
-    this.pokemonList = [{
-      url: undefined,
+  searchPokemon(event: string): void {
+    const fakeList: PokemonListItem[] = [{
+      url: '',
       name: event.toLowerCase()
     }];
+    this.api.pokemonList.set(fakeList);
   }
-
 }

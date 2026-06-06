@@ -1,32 +1,124 @@
 <app-header [pageHome]="false"></app-header>
-<div class="div-container">
-  <mat-card *ngIf="pokemon">
-      <mat-card-title >{{this.pokemon.name | uppercase}}</mat-card-title>
-      <img src="{{this.pokemon.sprites.front_default}}" alt="{{this.pokemon.name}}">
-    <mat-chip-list aria-label="Fish selection">
-      <mat-chip *ngFor="let type of pokemon.types" color="accent" selected>
-        {{type.type.name | titlecase}}
-      </mat-chip>
-    </mat-chip-list>
-    <h2 style="text-align: center;">#{{pokemon.id  | number:'3.0-5'}}</h2>
-    <mat-card-content>
-      <div mat-subheader>Stats</div>
-      <section class="section" *ngFor="let stat of pokemon.stats">
-        <label>{{stat.stat.name | titlecase}}</label>
-        <mat-progress-bar
-            class="margin"
-            color="accent"
-            mode="determinate"
-            value="{{stat.base_stat}}"
-          >
-          {{stat.base_stat}}
-        </mat-progress-bar>
-        </section>
+
+<div class="detail-wrapper">
+  @if (!pokemon) {
+    <div class="loading-state">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else {
+    <div class="detail-layout" @fadeSlideIn>
+      <!-- Left: Artwork -->
+      <div class="detail-artwork"
+        [style.background]="'linear-gradient(135deg, ' + typeColor(pokemon.types[0]?.type?.name || 'normal') + '33 0%, #f5f5f5 80%)'"
+      >
+        <img
+          [src]="pokemon.sprites.other?.['official-artwork']?.front_default || pokemon.sprites.front_default"
+          [alt]="pokemon.name"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Right: Info -->
+      <div class="detail-info">
+        <div class="info-header">
+          <div>
+            <span class="pokemon-number">#{{ pokemon.id | number:'3.0-5' }}</span>
+            <h1>{{ pokemon.name | titlecase }}</h1>
+          </div>
+          <mat-chip-set>
+            @for (type of pokemon.types; track type.slot) {
+              <mat-chip [style.background]="typeColor(type.type.name)" style="color: white">
+                {{ type.type.name | titlecase }}
+              </mat-chip>
+            }
+          </mat-chip-set>
+        </div>
+
         <mat-divider></mat-divider>
-        <mat-list>
-          <div mat-subheader>Abilities</div>
-          <mat-list-item *ngFor="let ability of this.pokemon.abilities"> {{ability.ability.name | titlecase}} </mat-list-item>
-         </mat-list>
-    </mat-card-content>
-  </mat-card>
+
+        <!-- Stats -->
+        <section class="info-section">
+          <h3>Base Stats</h3>
+          <div class="stats-grid">
+            @for (stat of pokemon.stats; track stat.stat.name) {
+              <div class="stat-item">
+                <span class="stat-label">{{ stat.stat.name | titlecase }}</span>
+                <div class="stat-bar">
+                  <mat-progress-bar
+                    [value]="stat.base_stat"
+                    [color]="statColor(stat.base_stat)"
+                    mode="determinate"
+                  ></mat-progress-bar>
+                </div>
+                <span class="stat-value">{{ stat.base_stat }}</span>
+              </div>
+            }
+          </div>
+        </section>
+
+        <mat-divider></mat-divider>
+
+        <!-- Abilities -->
+        <section class="info-section">
+          <h3>Abilities</h3>
+          <div class="abilities-grid">
+            @for (ability of pokemon.abilities; track ability.ability.name) {
+              <div class="ability-chip">
+                <mat-icon>stars</mat-icon>
+                <span>{{ ability.ability.name | titlecase }}</span>
+                @if (ability.is_hidden) {
+                  <span class="hidden-badge">Hidden</span>
+                }
+              </div>
+            }
+          </div>
+        </section>
+
+        <!-- Physical -->
+        <section class="info-section physical-section">
+          <div class="physical-item">
+            <mat-icon>height</mat-icon>
+            <span>Height: {{ pokemon.height / 10 }} m</span>
+          </div>
+          <div class="physical-item">
+            <mat-icon>fitness_center</mat-icon>
+            <span>Weight: {{ pokemon.weight / 10 }} kg</span>
+          </div>
+        </section>
+
+        @if (lastEvolutions.length > 0) {
+          <mat-divider></mat-divider>
+
+          <section class="info-section">
+            <h3>Evolution Chain</h3>
+            <div class="evolution-list">
+              @for (evo of lastEvolutions; track evo.name) {
+                <div
+                  class="evolution-card"
+                  [class.hologram]="evo.id === pokemon.id && isLastEvolution"
+                >
+                  @if (evo.id === pokemon.id && isLastEvolution) {
+                    <div class="hologram-overlay"></div>
+                  }
+                  <img
+                    [src]="evo.sprites.other?.['official-artwork']?.front_default || evo.sprites.front_default"
+                    [alt]="evo.name"
+                    loading="lazy"
+                  />
+                  <span class="evo-name">{{ evo.name | titlecase }}</span>
+                  <mat-chip-set>
+                    @for (type of evo.types; track type.slot) {
+                      <mat-chip [style.background]="typeColor(type.type.name)" style="color: white">
+                        {{ type.type.name | titlecase }}
+                      </mat-chip>
+                    }
+                  </mat-chip-set>
+                </div>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    </div>
+  }
 </div>

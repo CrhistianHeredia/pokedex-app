@@ -1,4 +1,14 @@
 
+mat-toolbar {
+  background: rgba(63, 81, 181, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .spacer {
   flex: 1 1 auto;
 }

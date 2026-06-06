@@ -1,18 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.mat-form-field-wrapper {
-  padding-bottom: 0em!important;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f0f2f5;
 }
 
-.div-container
-{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: auto;
-  align-items: center;
-  width: 1200;
+.mat-form-field-wrapper {
+  padding-bottom: 0em !important;
+}
+
+.div-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px 24px 8px;
+  align-items: start;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .div-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 12px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .div-container {
+    grid-template-columns: 1fr;
+  }
 }

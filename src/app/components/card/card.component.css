@@ -1,17 +1,127 @@
-mat-card{
-    background: url(../../../assets/img/background-card.png);
-    background-repeat: no-repeat;
-    background-size: 80%;
-    background-position: center;
-    background-color: rgba(209, 235, 247, 0.693);
-    flex: 33.3%;
-    margin: 40px;
-}
-
-mat-card-header{
+:host {
   display: block;
 }
 
-img{
-  width:200px;
+.pokemon-card {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 8px 8px 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}
+
+.pokemon-number {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+}
+
+img {
+  display: block;
+  margin: 4px auto;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.pokemon-card:hover img {
+  transform: scale(1.08);
+}
+
+mat-card-content {
+  text-align: center;
+  padding: 8px 12px 12px !important;
+}
+
+mat-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+mat-chip-set {
+  justify-content: center;
+  min-height: 32px;
+}
+
+::ng-deep .mat-mdc-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 10px;
+  height: 26px;
+  border-radius: 20px;
+}
+
+/* --- Hologram effect --- */
+
+.pokemon-card.hologram {
+  background: linear-gradient(
+    135deg,
+    rgba(180, 140, 255, 0.12) 0%,
+    rgba(140, 200, 255, 0.12) 25%,
+    rgba(255, 140, 200, 0.12) 50%,
+    rgba(140, 255, 200, 0.12) 75%,
+    rgba(180, 140, 255, 0.12) 100%
+  );
+  background-size: 400% 400%;
+  animation: hologramShift 4s ease infinite;
+  box-shadow:
+    0 0 20px rgba(180, 140, 255, 0.25),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(180, 140, 255, 0.15);
+}
+
+.pokemon-card.hologram:hover {
+  box-shadow:
+    0 16px 40px rgba(180, 140, 255, 0.3),
+    0 0 30px rgba(180, 140, 255, 0.15);
+}
+
+.hologram-overlay {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.04) 2px,
+    rgba(255, 255, 255, 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pokemon-card.hologram img {
+  filter: drop-shadow(0 0 10px rgba(180, 140, 255, 0.35))
+          saturate(1.15);
+  position: relative;
+  z-index: 1;
+}
+
+.pokemon-card.hologram .pokemon-number,
+.pokemon-card.hologram mat-card-title,
+.pokemon-card.hologram mat-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes hologramShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

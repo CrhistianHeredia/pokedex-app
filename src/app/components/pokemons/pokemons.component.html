@@ -1,11 +1,46 @@
 <app-header (search)="searchPokemon($event)" [pageHome]="true"></app-header>
-<div class="div-container" >
-  <app-card *ngFor="let item of pokemonList" [item]="item"></app-card>
+
+<div class="content-wrapper">
+  @if (loading()) {
+    <div class="skeleton-grid">
+      @for (_ of [1,2,3,4,5,6,7,8,9,10]; track _) {
+        <mat-card class="skeleton-card">
+          <mat-card-content>
+            <div class="skeleton-image pulse"></div>
+            <div class="skeleton-text pulse"></div>
+            <div class="skeleton-text short pulse"></div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  } @else {
+    <div class="div-container" @listStagger>
+      @for (item of pokemonList(); track item.name) {
+        @defer (on viewport) {
+          <app-card [item]="item" @fadeSlideIn></app-card>
+        } @placeholder {
+          <mat-card class="skeleton-card">
+            <mat-card-content>
+              <div class="skeleton-image pulse"></div>
+              <div class="skeleton-text pulse"></div>
+              <div class="skeleton-text short pulse"></div>
+            </mat-card-content>
+          </mat-card>
+        }
+      } @empty {
+        <p>No Pokémon found.</p>
+      }
+    </div>
+  }
 </div>
-<mat-paginator
-  [length]="countPokemons"
-  [pageSize]="pokemonLimit"
-  [showFirstLastButtons]=true
-  (page)="pageEvent = getPokemonList($event)"
->
-</mat-paginator>
+
+<div class="paginator-wrapper">
+  <mat-paginator
+    [length]="countPokemons()"
+    [pageSize]="pageSize()"
+    [pageIndex]="currentPage()"
+    [showFirstLastButtons]="true"
+    (page)="getPokemonList($event)"
+  >
+  </mat-paginator>
+</div>
