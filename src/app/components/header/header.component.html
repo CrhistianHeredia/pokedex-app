@@ -1,28 +1,34 @@
-<mat-toolbar color="primary" *ngIf="pageHome">
-  <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" routerLink="/home" >
-    <mat-icon>
-      <img src="../../../assets/img/poke-radar.png" alt="master-ball">
-    </mat-icon>
-  </button>
-  <span>Pokédex</span>
-  <span class="spacer"></span>
-  <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" routerLink="/trainer" >
-    <mat-icon>
-      account_circle
-    </mat-icon>
-  </button>
-  <mat-form-field appearance="outline">
-    <mat-label>Search pokémon</mat-label>
-    <input matInput placeholder="#id/name" [(ngModel)]="searchInput"/>
-    <button matSuffix mat-button (click)="searchPokemon()"><mat-icon>search</mat-icon></button>
-  </mat-form-field>
-</mat-toolbar>
+@if (pageHome) {
+  <mat-toolbar>
+    <div class="nav-left">
+      <button mat-icon-button aria-label="Home" routerLink="/home">
+        <img src="../../../assets/img/poke-radar.png" alt="Pokédex" class="nav-logo">
+      </button>
+      <span class="nav-brand">Pokédex</span>
+    </div>
 
-<mat-toolbar color="primary" *ngIf="!pageHome">
-  <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" (click)="backClicked()">
-    <mat-icon>
-        chevron_left
-    </mat-icon>
-  </button>
-  <span class="spacer"></span>
-</mat-toolbar>
+    <div class="nav-center">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search Pokémon</mat-label>
+        <input matInput placeholder="#id or name" [(ngModel)]="searchInput" (keyup.enter)="searchPokemon()"/>
+        <button matSuffix mat-icon-button (click)="searchPokemon()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="nav-right">
+      <button mat-icon-button aria-label="Trainer" routerLink="/trainer">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+} @else {
+  <mat-toolbar>
+    <button mat-icon-button aria-label="Back" (click)="backClicked()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span class="nav-brand">Pokédex</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+}
