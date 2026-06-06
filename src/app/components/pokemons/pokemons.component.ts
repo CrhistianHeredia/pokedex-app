@@ -39,10 +39,14 @@ export class PokemonsComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  searchPokemon(event: string): void {
+  searchPokemon(name: string): void {
+    if (!name.trim()) {
+      this.loadPokemonList();
+      return;
+    }
     const fakeList: PokemonListItem[] = [{
       url: '',
-      name: event.toLowerCase()
+      name: name.toLowerCase().trim()
     }];
     this.api.pokemonList.set(fakeList);
   }

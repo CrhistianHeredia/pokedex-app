@@ -8,7 +8,7 @@
     </div>
 
     <div class="nav-center">
-      <mat-form-field appearance="outline" class="search-field">
+      <mat-form-field appearance="fill" class="search-field" subscriptSizing="dynamic">
         <mat-label>Search Pokémon</mat-label>
         <input matInput placeholder="#id or name" [(ngModel)]="searchInput" (keyup.enter)="searchPokemon()"/>
         <button matSuffix mat-icon-button (click)="searchPokemon()">

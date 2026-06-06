@@ -15,7 +15,8 @@ export class HeaderComponent {
   constructor(private location: Location) {}
 
   searchPokemon(): void {
-    this.search.emit(this.searchInput);
+    if (!this.searchInput.trim()) return;
+    this.search.emit(this.searchInput.trim().toLowerCase());
   }
 
   backClicked(): void {
