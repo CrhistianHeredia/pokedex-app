@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Pokemon, EvolutionPokemon, typeColor, typeIcon, statColor } from 'src/app/models/pokemon';
 import { fadeSlideIn } from 'src/app/app-animations';
@@ -15,21 +15,35 @@ export class DetailsComponent implements OnInit {
   pokemon: Pokemon | null = null;
   lastEvolutions: EvolutionPokemon[] = [];
   isLastEvolution = false;
+  readonly currentId = signal(1);
 
   constructor(
     private activeRouter: ActivatedRoute,
+    private router: Router,
     private api: ApiService,
   ) {}
 
   ngOnInit(): void {
     this.activeRouter.params.subscribe(params => {
-      this.loadPokemon(params['id']);
+      const id = +params['id'];
+      this.currentId.set(id);
+      this.loadPokemon(id);
     });
   }
 
   typeColor = typeColor;
   typeIcon = typeIcon;
   statColor = statColor;
+
+  goNext(): void {
+    this.router.navigateByUrl(`/details/${this.currentId() + 1}`);
+  }
+
+  goPrev(): void {
+    if (this.currentId() > 1) {
+      this.router.navigateByUrl(`/details/${this.currentId() - 1}`);
+    }
+  }
 
   hideIcon(event: Event): void {
     (event.target as HTMLImageElement).style.display = 'none';

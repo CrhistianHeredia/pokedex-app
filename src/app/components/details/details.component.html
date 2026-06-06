@@ -6,6 +6,15 @@
       <mat-spinner></mat-spinner>
     </div>
   } @else {
+    <div class="nav-arrows">
+      <button class="nav-arrow prev" (click)="goPrev()" [class.disabled]="currentId() <= 1">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <button class="nav-arrow next" (click)="goNext()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+
     <div class="detail-layout" @fadeSlideIn>
       <!-- Left: Artwork -->
       <div class="detail-artwork"
