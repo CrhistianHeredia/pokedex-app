@@ -26,14 +26,14 @@
             <span class="pokemon-number">#{{ pokemon.id | number:'3.0-5' }}</span>
             <h1>{{ pokemon.name | titlecase }}</h1>
           </div>
-          <mat-chip-set>
+          <div class="detail-types">
             @for (type of pokemon.types; track type.slot) {
-              <mat-chip [style.background]="typeColor(type.type.name)" style="color: white">
+              <span class="detail-type-badge" [style.background]="typeColor(type.type.name)">
                 <img [src]="typeIcon(type.type.name)" alt="" class="type-icon" loading="lazy" (error)="hideIcon($event)">
                 {{ type.type.name | titlecase }}
-              </mat-chip>
+              </span>
             }
-          </mat-chip-set>
+          </div>
         </div>
 
         <mat-divider></mat-divider>
@@ -108,13 +108,13 @@
                     loading="lazy"
                   />
                   <span class="evo-name">{{ evo.name | titlecase }}</span>
-                  <mat-chip-set>
+                  <div class="detail-types">
                     @for (type of evo.types; track type.slot) {
-                      <mat-chip [style.background]="typeColor(type.type.name)" style="color: white">
+                      <span class="detail-type-badge small" [style.background]="typeColor(type.type.name)">
                         {{ type.type.name | titlecase }}
-                      </mat-chip>
+                      </span>
                     }
-                  </mat-chip-set>
+                  </div>
                 </div>
               }
             </div>

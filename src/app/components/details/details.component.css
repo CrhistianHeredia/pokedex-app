@@ -61,6 +61,37 @@
   margin-bottom: 16px;
 }
 
+.detail-types {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detail-type-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-type-badge.small {
+  padding: 3px 10px;
+  font-size: 11px;
+}
+
+.detail-type-badge .type-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
+}
+
 .info-header h1 {
   margin: 4px 0 0;
   font-size: 32px;
@@ -222,11 +253,6 @@
   font-size: 13px;
   font-weight: 600;
   color: #2c3e50;
-  position: relative;
-  z-index: 1;
-}
-
-.evolution-card mat-chip-set {
   position: relative;
   z-index: 1;
 }
