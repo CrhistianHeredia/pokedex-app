@@ -64,6 +64,33 @@ export interface EvolutionPokemon {
   types: PokemonType[];
 }
 
+const TYPE_ICONS_BASE = 'https://raw.githubusercontent.com/duiker101/pokemon-type-svg-icons/master/icons';
+
+export const TYPE_ICONS: Record<string, string> = {
+  fire: `${TYPE_ICONS_BASE}/fire.svg`,
+  water: `${TYPE_ICONS_BASE}/water.svg`,
+  grass: `${TYPE_ICONS_BASE}/grass.svg`,
+  electric: `${TYPE_ICONS_BASE}/electric.svg`,
+  psychic: `${TYPE_ICONS_BASE}/psychic.svg`,
+  ice: `${TYPE_ICONS_BASE}/ice.svg`,
+  dragon: `${TYPE_ICONS_BASE}/dragon.svg`,
+  dark: `${TYPE_ICONS_BASE}/dark.svg`,
+  fairy: `${TYPE_ICONS_BASE}/fairy.svg`,
+  fighting: `${TYPE_ICONS_BASE}/fighting.svg`,
+  flying: `${TYPE_ICONS_BASE}/flying.svg`,
+  ghost: `${TYPE_ICONS_BASE}/ghost.svg`,
+  ground: `${TYPE_ICONS_BASE}/ground.svg`,
+  poison: `${TYPE_ICONS_BASE}/poison.svg`,
+  rock: `${TYPE_ICONS_BASE}/rock.svg`,
+  bug: `${TYPE_ICONS_BASE}/bug.svg`,
+  steel: `${TYPE_ICONS_BASE}/steel.svg`,
+  normal: `${TYPE_ICONS_BASE}/normal.svg`,
+};
+
+export function typeIcon(type: string): string {
+  return TYPE_ICONS[type] || '';
+}
+
 export const TYPE_COLORS: Record<string, string> = {
   fire: '#FF4500',
   water: '#3399FF',

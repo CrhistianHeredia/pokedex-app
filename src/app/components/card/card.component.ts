@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Pokemon, PokemonListItem, typeColor } from 'src/app/models/pokemon';
+import { Pokemon, PokemonListItem, typeColor, typeIcon } from 'src/app/models/pokemon';
 
 @Component({
   selector: 'app-card',
@@ -36,6 +36,10 @@ export class CardComponent implements OnInit {
     });
   }
 
+  hideIcon(event: Event): void {
+    (event.target as HTMLImageElement).style.display = 'none';
+  }
+
   readonly fallbackImg = 'data:image/svg+xml,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">' +
     '<circle cx="100" cy="85" r="45" fill="#e0e0e0"/>' +
@@ -51,6 +55,7 @@ export class CardComponent implements OnInit {
   );
 
   typeColor = typeColor;
+  typeIcon = typeIcon;
 
   onImgError(event: Event): void {
     const img = event.target as HTMLImageElement;

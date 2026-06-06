@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Pokemon, EvolutionPokemon, typeColor, statColor } from 'src/app/models/pokemon';
+import { Pokemon, EvolutionPokemon, typeColor, typeIcon, statColor } from 'src/app/models/pokemon';
 import { fadeSlideIn } from 'src/app/app-animations';
 
 @Component({
@@ -28,7 +28,21 @@ export class DetailsComponent implements OnInit {
   }
 
   typeColor = typeColor;
+  typeIcon = typeIcon;
   statColor = statColor;
+
+  hideIcon(event: Event): void {
+    (event.target as HTMLImageElement).style.display = 'none';
+  }
+
+  onImgError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.style.display = 'none';
+    const wrapper = img.closest('.detail-artwork');
+    if (wrapper) {
+      wrapper.classList.add('silhouette-visible');
+    }
+  }
 
   private loadPokemon(id: string): void {
     this.api.getPokemonDetail(id).subscribe(data => {

@@ -19,13 +19,18 @@
     >
     <mat-card-content>
       <mat-card-title>{{ pokemon.name | titlecase }}</mat-card-title>
-      <mat-chip-set>
-        @for (type of pokemon.types; track type.slot) {
-          <mat-chip [style.background]="typeColor(type.type.name)" style="color: white">
-            {{ type.type.name | titlecase }}
-          </mat-chip>
-        }
-      </mat-chip-set>
     </mat-card-content>
+
+    <div class="type-bar">
+      @for (type of pokemon.types; track type.slot) {
+        <span
+          class="type-badge"
+          [style.background]="typeColor(type.type.name)"
+        >
+          <img [src]="typeIcon(type.type.name)" alt="" class="type-icon" loading="lazy" (error)="hideIcon($event)">
+          {{ type.type.name | titlecase }}
+        </span>
+      }
+    </div>
   </mat-card>
 }
