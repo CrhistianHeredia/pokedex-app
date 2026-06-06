@@ -11,8 +11,13 @@ export class HeaderComponent {
   @Input() pageHome = true;
 
   searchInput = '';
+  userImgError = false;
 
   constructor(private location: Location) {}
+
+  onUserImgError(): void {
+    this.userImgError = true;
+  }
 
   searchPokemon(): void {
     if (!this.searchInput.trim()) return;

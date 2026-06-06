@@ -101,6 +101,23 @@ mat-toolbar {
   color: white;
 }
 
+.user-btn {
+  position: relative;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.2s;
+}
+
+.user-btn:hover .user-avatar {
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
 .spacer {
   flex: 1 1 auto;
 }

@@ -18,8 +18,18 @@
     </div>
 
     <div class="nav-right">
-      <button mat-icon-button aria-label="Trainer" routerLink="/trainer">
-        <mat-icon>account_circle</mat-icon>
+      <button mat-icon-button aria-label="Trainer" routerLink="/trainer" class="user-btn">
+        @if (!userImgError) {
+          <img
+            src="../../../assets/img/perfil.jpg"
+            alt="Trainer"
+            class="user-avatar"
+            (error)="onUserImgError()"
+          />
+        }
+        @if (userImgError) {
+          <mat-icon>account_circle</mat-icon>
+        }
       </button>
     </div>
   </mat-toolbar>
@@ -30,8 +40,18 @@
     </button>
     <span class="nav-brand">Pokédex</span>
     <span class="spacer"></span>
-    <button mat-icon-button aria-label="Trainer" routerLink="/trainer">
-      <mat-icon>account_circle</mat-icon>
+    <button mat-icon-button aria-label="Trainer" routerLink="/trainer" class="user-btn">
+      @if (!userImgError) {
+        <img
+          src="../../../assets/img/perfil.jpg"
+          alt="Trainer"
+          class="user-avatar"
+          (error)="onUserImgError()"
+        />
+      }
+      @if (userImgError) {
+        <mat-icon>account_circle</mat-icon>
+      }
     </button>
   </mat-toolbar>
 }
