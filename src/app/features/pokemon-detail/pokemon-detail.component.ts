@@ -1,16 +1,16 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/core/services/api.service';
 import { Pokemon, EvolutionPokemon, typeColor, typeIcon, statColor } from 'src/app/models/pokemon';
 import { fadeSlideIn } from 'src/app/app-animations';
 
 @Component({
   selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css'],
+  templateUrl: './pokemon-detail.component.html',
+  styleUrls: ['./pokemon-detail.component.css'],
   animations: [fadeSlideIn]
 })
-export class DetailsComponent implements OnInit {
+export class PokemonDetailComponent implements OnInit {
   title = 'Pokémon Details';
   pokemon: Pokemon | null = null;
   lastEvolutions: EvolutionPokemon[] = [];

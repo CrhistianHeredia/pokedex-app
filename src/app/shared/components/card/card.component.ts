@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/core/services/api.service';
 import { Pokemon, PokemonListItem, typeColor, typeIcon } from 'src/app/models/pokemon';
 
 @Component({

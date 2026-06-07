@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, switchMap, forkJoin, of, catchError, map, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pokemon, PokemonListItem, PokemonListResponse, PokemonSpecies, EvolutionChain, ChainLink, EvolutionPokemon } from '../models/pokemon';
+import { Pokemon, PokemonListItem, PokemonListResponse, PokemonSpecies, EvolutionChain, ChainLink, EvolutionPokemon } from '../../models/pokemon';
 
 @Injectable({
   providedIn: 'root'

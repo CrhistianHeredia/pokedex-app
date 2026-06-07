@@ -1,17 +1,17 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/core/services/api.service';
 import { PokemonListItem } from 'src/app/models/pokemon';
 import { listStagger, fadeSlideIn } from 'src/app/app-animations';
 
 @Component({
   selector: 'app-pokemons',
-  templateUrl: './pokemons.component.html',
-  styleUrls: ['./pokemons.component.css'],
+  templateUrl: './pokemon-list.component.html',
+  styleUrls: ['./pokemon-list.component.css'],
   animations: [listStagger, fadeSlideIn]
 })
-export class PokemonsComponent implements OnInit {
+export class PokemonListComponent implements OnInit {
   readonly currentPage = signal(this.api.savedPageIndex);
   readonly pageSize = signal(this.api.savedPageSize);
 
