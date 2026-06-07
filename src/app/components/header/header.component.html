@@ -1,7 +1,7 @@
 @if (pageHome) {
   <mat-toolbar>
     <a class="nav-left" routerLink="/home">
-      <img src="../../../assets/img/poke-radar.png" alt="Pokédex" class="nav-logo">
+      <img src="./assets/img/poke-radar.png" alt="Pokédex" class="nav-logo">
       <span class="nav-brand">Pokédex</span>
     </a>
 
@@ -26,7 +26,7 @@
     <a class="nav-right" routerLink="/trainer">
       @if (!userImgError) {
         <img
-          src="../../../assets/img/perfil.jpg"
+          src="./assets/img/perfil.jpg"
           alt="Trainer"
           class="user-avatar"
           (error)="onUserImgError()"
@@ -52,7 +52,7 @@
     <a class="nav-right" routerLink="/trainer">
       @if (!userImgError) {
         <img
-          src="../../../assets/img/perfil.jpg"
+          src="./assets/img/perfil.jpg"
           alt="Trainer"
           class="user-avatar"
           (error)="onUserImgError()"

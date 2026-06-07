@@ -17,6 +17,10 @@ export class ApiService {
   readonly totalCount = signal(0);
   readonly loading = signal(false);
 
+  /** Estado persistente del paginador entre navegaciones */
+  savedPageIndex = 0;
+  savedPageSize = 20;
+
   constructor(private http: HttpClient) {}
 
   getPokemonList(limit: number, offset: number): Observable<PokemonListResponse> {
