@@ -88,14 +88,18 @@ export class DetailsComponent implements OnInit {
   }
 
   private loadPokemon(id: number): void {
-    this.api.getPokemonDetail(id).subscribe(data => {
-      this.pokemon = data;
-
-      // Cargar últimas evoluciones
-      this.api.getLastEvolutions(data.id).subscribe(evolutions => {
-        this.lastEvolutions = evolutions;
-        this.isLastEvolution = evolutions.some(e => e.id === data.id);
-      });
+    this.api.getPokemonDetail(id).subscribe({
+      next: data => {
+        this.pokemon = data;
+        this.api.getLastEvolutions(data.id).subscribe({
+          next: evolutions => {
+            this.lastEvolutions = evolutions;
+            this.isLastEvolution = evolutions.some(e => e.id === data.id);
+          },
+          error: () => {}
+        });
+      },
+      error: () => {}
     });
   }
 }

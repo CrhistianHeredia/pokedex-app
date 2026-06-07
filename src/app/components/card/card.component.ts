@@ -24,15 +24,21 @@ export class CardComponent implements OnInit {
   }
 
   private loadPokemon(): void {
-    this.api.getPokemonDetail(this.item.name).subscribe(data => {
-      this.pokemon = data;
-      this.checkIfLastEvolution(data.id);
+    this.api.getPokemonDetail(this.item.name).subscribe({
+      next: data => {
+        this.pokemon = data;
+        this.checkIfLastEvolution(data.id);
+      },
+      error: () => {}
     });
   }
 
   private checkIfLastEvolution(id: number): void {
-    this.api.getLastEvolutions(id).subscribe(evolutions => {
-      this.isLastEvolution = evolutions.some(e => e.id === id);
+    this.api.getLastEvolutions(id).subscribe({
+      next: evolutions => {
+        this.isLastEvolution = evolutions.some(e => e.id === id);
+      },
+      error: () => {}
     });
   }
 

@@ -29,7 +29,9 @@ export class PokemonsComponent implements OnInit {
   }
 
   loadPokemonList(): void {
-    this.api.getPokemonList(this.pageSize(), this.currentPage() * this.pageSize()).subscribe();
+    this.api.getPokemonList(this.pageSize(), this.currentPage() * this.pageSize()).subscribe({
+      error: () => this.api.loading.set(false)
+    });
   }
 
   getPokemonList(event: PageEvent): void {
